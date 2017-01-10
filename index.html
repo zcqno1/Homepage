@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<header class="header">
+		<div class="settings">
+			<!-- 设置导航 -->
+			<nav class="settings__menu" data-settings="menu">
+				<ul>
+					<li data-settings="general"><i class="icon icon__setting"></i></li>
+					<li data-settings="skin"><i class="icon icon__skin"></i></li>
+					<li data-settings="refresh"><i class="icon icon__refresh"></i></li>
+				</ul>
+			</nav>
+			<!-- 设置内容 -->
+			<form data-settings="form">
+				<div class="settings__content" data-settings="content">
+					<!-- 常规设置 -->
+					<div data-settings="general-content">
+						<h3 class="settings__title">常规设置</h3>
+						<dl class="settings__options" data-settings="options">
+							<dt data-settings="option" data-toggle="off"><label>搜索引擎<span class="choose" data-settings="engineName">谷歌</span><input type="checkbox" name="engines" class="hidden"><i class="icon icon__arrow"></i></label></dt>
+							<dd data-settings="option-content">
+								<div data-settings="option-content-wrap">
+									<label><input type="radio" name="engine" value="google" checked="checked" class="hidden"><i class="icon icon__radio icon__radio--circle"></i>谷歌</label>
+									<label><input type="radio" name="engine" value="baidu" class="hidden"><i class="icon icon__radio icon__radio--circle"></i>百度</label>
+									<label><input type="radio" name="engine" value="bing" class="hidden"><i class="icon icon__radio icon__radio--circle"></i>必应</label>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<!-- 皮肤设置 -->
+					<div data-settings="skin-content">
+						<h3 class="settings__title">皮肤设置</h3>
+						<dl class="settings__options" data-settings="options">
+							<dt data-settings="option" data-toggle="off"><label>使用纯色背景<span class="choose" data-settings="bgColorTag"></span><input type="checkbox" name="purebg" class="hidden"><i class="icon icon__arrow"></i></label></dt>
+							<dd class="settings__colorlist" data-settings="option-content">
+								<div data-settings="option-content-wrap">
+									<label><input type="radio" name="bgColor" class="hidden" value="#22B2DA"><i class="icon icon__radio icon__radio--rect"></i></label>
+									<label><input type="radio" name="bgColor" class="hidden" value="#EE676B"><i class="icon icon__radio icon__radio--rect"></i></label>
+									<label><input type="radio" name="bgColor" class="hidden" value="#22CF9E"><i class="icon icon__radio icon__radio--rect"></i></label>
+									<label><input type="radio" name="bgColor" class="hidden" value="#6C7783" checked="checked"><i class="icon icon__radio icon__radio--rect"></i></label>
+									<input type="color" name="bgColor">
+								</div>
+							</dd>
+							<dt data-settings="option"><label>使用图片背景<span class="choose" data-settings="bgImgMode"></span><input type="checkbox" name="useBgImg" class="hidden" value="true"><i class="icon icon__checkboxslide"></i></label></dt>
+							<div data-settings="subOptions" class="sub-options">
+								<dt data-settings="option"><label>使用本地图片<input type="checkbox" name="useLocalImg" class="hidden"><i class="icon icon__checkboxslide"></i></label></dt>
+								<dd data-settings="option-content">
+									<div>
+										<label><input type="file" name="loadImg" class="fullline"></label>
+										<label class="current-value">当前选择文件名：<span data-settings="localImgName"></span></label>
+									</div>
+								</dd>
+								<dt data-settings="option" data-toggle="off"><label>调用图片API搜索<input type="checkbox" name="useSearchImg" class="hidden"><i class="icon icon__checkboxslide"></i></label></dt>
+								<dd data-settings="option-content">
+									<div class="search-img">
+										<label>顶部显示刷新按钮<input type="checkbox" name="showRefreshBtn" class="hidden"><i class="icon icon__checkboxslide"></i></label>
+										<label>关键字 <input type="text" name="imgKeyword" placeholder="如：龙珠"><input type="submit" name="searchImgBtn" class="btn btn--positive" value="→"></label>
+										<!-- <label class="current-value">当前保存值：<span data-settings="searchImg"></span></label> -->
+									</div>
+								</dd>
+								<dt data-settings="option" data-toggle="off"><label>自定义在线图片<input type="checkbox" name="useOnlineImg" class="hidden"><i class="icon icon__checkboxslide"></i></label></dt>
+								<dd data-settings="option-content">
+									<div class="online-img">
+										<label><input type="text" name="onlineImg" placeholder="输入在线图片地址"><input type="submit" name="onlineImgBtn" class="btn btn--positive" value="→"></label>
+									</div>
+								</dd>
+							</div>
+						</dl>
+					</div>
+					<!-- 刷新设置 -->
+					<div data-settings="refresh-content" data-state="loading">
+						<!-- <h3 class="settings__title">刷新</h3> -->
+						<div class="settings__refresh">
+							<div class="settings__refresh--loading"><label><i class="icon icon__loading"></i>loading...</label></div>
+							<div class="settings__refresh--success"><label><i class="icon icon__success"></i>success</label></div>
+							<div class="settings__refresh--failed"><label><i class="icon icon__failed"></i>failed</label></div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 搜索框 -->
+		<div id="search" class="search">
+			<form data-action="submitSearch" class="search__form">
+				<input type="text" placeholder="谷歌搜索" name="search-bar" id="search-bar" class="search__bar">
+			</form>
+		</div>
+	</header>
+
+	<!-- 链接列表 -->
+	<div id="navbox" class="navbox"></div>
+
+	<!-- 添加按钮 -->
+	<div class="btn btn--add" data-action="clickModal"><i class="icon icon__plus"></i></div>
+
+	<!-- 模态窗口 -->
+	<div id="modal-box" class="modal modal--inactive"></div>
+
+	<!-- 网址区域图形背景 -->
+	<div class="figurebg" id="figurebg">
+		<div class="figurebg--style1"></div>
+		<div class="figurebg--style2"></div>
+		<div class="figurebg--style3"></div>
+	</div>
+
+	<!-- 链接模板 -->
+	<script type="text/icon-tpl" id="tpl-item">
+		<div class="navitem" data-action="lpressModal"><a href="{{url}}" class="navitem__title">
+			<img src="{{icon}}" class="navitem__icon">
+			<p>{{title}}</p></a>
+		</div>
+	</script>
+	<script type="text/tpl" id="tpl-mform">
+		<form class="modal__box mform">
+			<label class="mform__label" for="input-title">名称</label>
+			<input type="text" name="title" id="input-title" class="mform__input">
+			<label class="mform__label" for="input-url">网址</label>
+			<input type="text" name="url" id="input-url" class="mform__input">
+
+			<div class="btngroup btngroup--h">
+				<button type="button" class="btn btn--positive" data-action="{{clickAction}}" data-isreuse="true">{{ok}}</button>
+				<button type="button" class="btn" data-action="closeModal">取消</button>
+			</div>
+		</form>
+	</script>
+	<script type="text/tpl" id="tpl-itemopt">
+		<div class="modal__box optbox">
+			<div class="btngroup btngroup--v optbox__btngroup">
+				<button type="button" class="btn btn--positive" data-action="clickModify">修改</button>
+				<button type="button" class="btn btn--negative" data-action="clickDelete">删除</button>
+				<button type="button" class="btn" data-action="closeModal">取消</button>
+			</div>
+		</div>
+	</script>
+	<script data-main="scripts/app" src="scripts/lib/require.min.js"></script>
+</body>
+</html>
