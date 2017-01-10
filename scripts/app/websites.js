@@ -45,7 +45,9 @@ define(["util", "navbox", "configdata"], function(util, navbox, configdata){
 		addData: function(website) {
 			this.data.push(website);
 			this.updateLocalStorage();
-			navbox.renderAll([website]);
+			navbox.render([website], function(item) {
+				item.style.backgroundColor = util.randomBGC(0.6);
+			});
 		}
 
 	};

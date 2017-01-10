@@ -17,6 +17,13 @@ li{
 	list-style: none;
 }
 
+body{
+	background-color: #fff;
+}
+
+/**
+ * 头部
+ */
 .header{
 	min-height: 200px;
 	background-color: #379;
@@ -647,7 +654,6 @@ input[type=checkbox]:checked + .icon__arrow::before{
 	bottom: 0;
 	left: 0;
 	z-index: -1;
-	background-color: #fff;
 	overflow: hidden;
 }
 
